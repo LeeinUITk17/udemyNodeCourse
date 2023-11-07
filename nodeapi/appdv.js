@@ -1,12 +1,15 @@
-const express=require('express');
-const app=express();
-app.get("/",(req,res)=>{
-    res.send("hello by express");
-})
-const postRoutes=require('./routes/post');
-app.get("/",postRoutes.getPosts);
+const express = require('express');
+const app = express();
 
-const port=8080
-app.listen(port,()=>{
-    console.log(`A nodejs api is listening on port ${port}`);
+const { getPosts} = require('./routes/post');
+
+// Define a single route handler that combines the functionality
+// app.get("/", (req, res) => {
+//     getPosts(req, res);  // Call getPosts function
+//     saysomething(req, res);  // Call saysomething function
+// });
+app.get("/",getPosts);
+const port = 8080;
+app.listen(port, () => {
+    console.log(`A nodejs API is listening on port ${port}`);
 });
