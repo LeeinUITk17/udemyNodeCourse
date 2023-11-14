@@ -1,12 +1,22 @@
-const express=require('express');
-const app=express();
-app.get("/",(req,res)=>{
-    res.send("hello by express");
-})
-const postRoutes=require('./routes/post');
-app.get("/",postRoutes.getPosts);
+const express = require('express');
+const morgan = require('morgan');
 
-const port=8080
-app.listen(port,()=>{
-    console.log(`A nodejs api is listening on port ${port}`);
+const app = express();
+const port = 8080;
+
+// Middleware
+const myOwnMiddleware = (req, res, next) => {
+    console.log('Middleware applied!');
+    next();
+};
+
+app.use(morgan('dev'));
+app.use(myOwnMiddleware);
+
+// Routes
+const { getPosts } = require('./routes/post');
+app.get('/', getPosts);
+
+app.listen(port, () => {
+    console.log(`Node.js API is listening on port ${port}`);
 });
