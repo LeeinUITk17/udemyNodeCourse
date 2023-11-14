@@ -56,11 +56,12 @@
 const fs=require('fs');
 const filename="target.txt";
 
+const errhandler=err=>console.log(err);
+const datahandler=err=>console.log(data.toString());
+
 fs.readFile(filename,(err,data)=>{
-  if(err){
-    console.log(err);
-  }
-  console.log(data.toString());
+  if(err) errhandler(err);
+ datahandler(data);     
 })
 console.log('nodejs async programing...?')
 
