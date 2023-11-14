@@ -20,3 +20,4 @@ app.get('/', getPosts);
 app.listen(port, () => {
     console.log(`Node.js API is listening on port ${port}`);
 });
+
