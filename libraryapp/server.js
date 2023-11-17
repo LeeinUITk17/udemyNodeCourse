@@ -27,6 +27,12 @@ app.get('/search', (req, res) => {
     res.json(results);
 });
 
+app.get('/details',(req,res)=>{
+    const title=req.query.title;
+    const book=library.find(book=>book.title===title);
+    res.json(book);
+})
+
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });
