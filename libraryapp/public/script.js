@@ -71,3 +71,35 @@ function sortResults() {
     bookList.innerHTML = '';
     books.forEach(book => bookList.appendChild(book));
 }
+
+function fetchWeatherData(city,callback){
+    setTimeout(()=>{
+        const temperature=Math.floor(Math.random()*20)+10;
+        callback({city,temperature});
+    },1000);
+}
+
+function calculateAverageTemperature(dataArray,callback){
+    const temperature=dataArray.map(data=>data.temperature);
+    const averageTemperature=temperature.reduce((sum,temp)=>sum+temp,0)/temperature.length;
+    callback(averageTemperature);
+}
+
+const cities=["New York","London","Tokyo"];
+const weatherData=[];
+function fetchAndProcessData(){
+    let count=0;
+    function processData(data){
+        weatherData.push(data);
+        if(++count===cities.length){
+            calculateAverageTemperature(weatherData,displayAverageTemperature);
+        }
+    }
+    cities.forEach(city=>{
+        fetchWeatherData(city,processData);
+    });
+}
+function displayAverageTemperature(averageTemperature){
+    console.log(`The average temperature for the selected cties is: ${averageTemperature.toFixed(2)} Celsius`);
+}
+fetchAndProcessData();
