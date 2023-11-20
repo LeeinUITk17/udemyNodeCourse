@@ -103,3 +103,14 @@ function displayAverageTemperature(averageTemperature){
     console.log(`The average temperature for the selected cties is: ${averageTemperature.toFixed(2)} Celsius`);
 }
 fetchAndProcessData();
+// fetch example
+getWeather(weatherReceived);
+function weatherReceived(data){
+    let weather=data;
+    document.body.innerText(weather);
+}
+function getWeather(callback){
+    setTimeout(()=>{
+        callback('Sunny');
+    });
+}
