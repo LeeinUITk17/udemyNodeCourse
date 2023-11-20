@@ -4,6 +4,8 @@
 // //     const loadingSpinner = document.getElementById('loadingSpinner');
 // //     const bookDetails = document.getElementById('bookDetails');
 
+const { response } = require("express");
+
 // //     try {
 // //         // Display loading spinner while waiting for the API response
 // //         loadingSpinner.classList.remove('hidden');
@@ -242,3 +244,24 @@ function onFinallyX(){
  .then(onSuccessX)
  .catch(onErrorX)
  .finally(onFinallyX)
+//////////////////////////////////////////////////
+function fetchData() {
+    return new Promise(function (resolve, reject) {
+        fetch('https://api.weather.gov/gridpoints/OKX/35,35//forecast')
+            .then(response => response.json())
+            .then(data => resolve(data.properties.periods[1].shortForecast))
+            .catch(error => reject(error)); // Handle errors and reject the promise
+    });
+}
+
+function displayData(weather) {
+    console.log(weather);
+}
+
+function onErrorz(err) {
+    console.log(`Error: ${err}`);
+}
+
+fetchData()
+    .then(displayData)
+    .catch(onErrorz);
