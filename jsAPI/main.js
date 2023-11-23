@@ -4,11 +4,11 @@
 // //     const loadingSpinner = document.getElementById('loadingSpinner');
 // //     const bookDetails = document.getElementById('bookDetails');
 
-const { response, request, request } = require("express");
+// const { response, request, request } = require("express");
 
 // //     try {
 // //         // Display loading spinner while waiting for the API response
-// //         loadingSpinner.classList.remove('hidden');
+// //         loadingSpinner.classList.remove('hidden');                        
 
 // //         const response = await fetch(`/search?title=${searchInput}`);
 // //         const data = await response.json();
