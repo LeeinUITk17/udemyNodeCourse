@@ -4,7 +4,7 @@
 // //     const loadingSpinner = document.getElementById('loadingSpinner');
 // //     const bookDetails = document.getElementById('bookDetails');
 
-const { response } = require("express");
+const { response, request, request } = require("express");
 
 // //     try {
 // //         // Display loading spinner while waiting for the API response
@@ -265,3 +265,139 @@ function onErrorz(err) {
 fetchData()
     .then(displayData)
     .catch(onErrorz);
+////////////////////////////////////////////////////
+function getData(){
+    return new Promise(resolve=>{
+        setTimeout(() => {
+           resolve(46) 
+        }, 1);
+    })
+}
+// const result=getData();
+// console.log(result)
+async function start(){
+    const result= await getData();
+    console.log(result);
+}
+start()
+
+async function startx(){
+    const data=await fetch('http://api.weather.gov/gridpoints/OKX/35,35/forecast');
+    const result=await data.json();
+     console.log(result.properties.periods[5].shortForecast);
+}
+startx()
+
+function nongetData(){
+    return new Promise(function(resolve,reject){
+        setTimeout(() => {
+          //  reject('something went wrong!!')
+          resolve('congratulation !!')
+        }, 1 );
+    })
+}
+
+function Successfully(result){
+    console.log(`Success: ${result}`);
+}
+
+function Failure(result){
+    console.log(`Error: ${result}`)
+}
+
+async function nonstart(){
+    try{
+        const result=await nongetData();
+       Successfully(result);
+    }catch(error){
+        Failure();
+    }
+}
+nongetData()
+.then(nonstart)
+.catch(Failure)
+////////////////////////////////////////////////////////////////
+
+
+//const url='http://worldtimeapi.org/api/timezone/America/New_York'
+ async function getDataAPI(){
+  const response=await fetch('http://worldtimeapi.org/api/timezone/America/New_York')
+  //console.log(response)
+  const data=await response.json();
+  console.log(data)
+ }
+ //getDataAPI();
+ const artistId = '2TpxZ7JUBn3uw46aR7qd6V';
+const apiUrl = `https://api.spotify.com/v1/artists/${artistId}`;
+
+async function getDataArtist() {
+    // Check if localStorage is available, if not, use a polyfill
+    if (typeof localStorage === 'undefined' || localStorage === null) {
+        // Import the polyfill correctly
+        const LocalStoragePolyfill = require('localstorage-polyfill');
+        // Initialize the polyfill
+        if (typeof window !== 'undefined') {
+            window.localStorage = new LocalStoragePolyfill('./scratch');
+        }
+    }
+
+    // Now you can use localStorage as usual
+    const accessToken = localStorage.getItem('access_token');
+
+    // Check if the access token is available
+    if (!accessToken) {
+        console.error('Access token is missing. Please provide a valid access token.');
+        return;
+    }
+
+    const request = new Request(apiUrl, {
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        }
+    });
+
+    try {
+        const response = await fetch(request);
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch data. Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
+    }
+}
+
+getDataArtist();
+
+
+// //spotify api
+// async function getProfile(accessToken) {
+//   // Check if accessToken is provided, otherwise use the one from localStorage
+//   const token = accessToken || localStorage.getItem('access_token');
+
+//   const response = await fetch('https://api.spotify.com/v1/me', {
+//     headers: {
+//       Authorization: 'Bearer ' + token
+//     }
+//   });
+
+//   const data = await response.json();
+//   console.log(data); // You can log or further process the retrieved data here
+// }
+
+// // Call the function with the provided accessToken or null to use the one from localStorage
+// getProfile('your_actual_access_token');
+//--------------------------------------------------------------------------------------------------------
+
+// const urlID = '2TpxZ7JUBn3uw46aR7qd6V';
+// const url = `https://api.spotify.com/v1/artists/${artistId}`;
+// async function getDatanon(){
+//     const request=new request(url,{
+//         headers:{
+//             'Authorization':''
+//         }
+//     })
+// }
