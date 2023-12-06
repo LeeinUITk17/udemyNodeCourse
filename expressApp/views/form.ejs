@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<%  include elements/header %>
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+       <% include elements/sidebar  %>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <% include elements/topnav %>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Item Management - Add</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Form 
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="alert alert-danger" role="alert">
+                                                <ul>
+                                                    <li>Name: không được rỗng</li>
+                                                    <li>Status: chọn một trạng thái</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <form role="form" action="admin123/item/save/" method="POST">
+                                                <div class="form-group">
+                                                    <label>Name</label>
+                                                    <input class="form-control" name="name" value="" >
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Ordering</label>
+                                                    <input class="form-control" type="number" name="ordering" value="0" >
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Status</label>
+                                                    <select name="status" class="form-control" >
+                                                        <option value="novalue">Choose Status</option>
+                                                        <option value="active"  >Active</option>
+                                                        <option value="inactive"  >Inactive</option>
+                                                    </select>
+                                                </div>
+                                                <!-- <div class="form-group">
+                                                    <label>Content</label>
+                                                    <textarea class="form-control" name="content" rows="2"  id="content_ck" ></textarea>
+                                                    </div> -->
+                                                <input class="form-control" name="id" value="" type="hidden" >
+                                                <button type="submit" class="btn btn-primary">Submit </button>
+                                                <a type="button" href="admin123/item/" class="btn btn-default">Cancel</a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+<style>
+    #page-wrapper{
+        padding-left: 30px;
+    }
+</style>
+            <!-- Footer --> 
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <% include elements/Logout %>
+    =======
+       <% include elements/logoutModal %>
+
+    <% include elements/script %>
+
+</body>
+
+</html>
