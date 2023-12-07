@@ -5,9 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // var expressLayouts = require('express-ejs-layouts');
-
+var mongoose=require('mongoose');
+// mongoose.connect('mongo+srv://leeinearth817:cnttvietnhatk17@mongodb.com/sample_weatherdata')
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var usersRouter = require('./routes/users');
 var itemRouter=require('./routes/item');
 //var videoRouter=require('./routes/item')
 var app = express();
@@ -28,7 +29,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
+// app.use('/list',require('./routes/item'));
+// app.use('/form',require('./routes/item'));
 app.use('/item',itemRouter);
 
 // catch 404 and forward to error handler

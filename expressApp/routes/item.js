@@ -10,8 +10,7 @@ var router = express.Router();
 // // router.get('/video/add', function(req, res, next) {
 // //     res.send('add Videos demo');
 // //   });
-router.get('/add',function(req,res,next){
-  res.render('add');
-})
-
+// router.get('/add',function(req,res,next){
+//   res.render('add');
+// })
 module.exports = router;
