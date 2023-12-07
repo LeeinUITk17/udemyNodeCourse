@@ -22,6 +22,6 @@ const mongoose = require('mongoose');
 //         process.exit(0);
 //     });
 // });
-mongoose.connect(
-    "mongodb://localhost//testdb"
-)
+const user=require("./user")
+mongoose.connect("mongodb://localhost//testdb")
+
