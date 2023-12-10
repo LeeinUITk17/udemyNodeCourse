@@ -7,10 +7,27 @@ var logger = require('morgan');
 // var expressLayouts = require('express-ejs-layouts');
 var mongoose=require('mongoose');
 // mongoose.connect('mongo+srv://leeinearth817:cnttvietnhatk17@mongodb.com/sample_weatherdata')
+mongoose.connect('mongodb+srv://leeinearth817:cnttvietnhatk17@cluster0.pjk9ees.mongodb.net/')
+
+var db = mongoose.connection;
+db.on('error', function (error) {
+  console.log('Connection error:', error);
+});
+
+db.once('open', function () {
+  console.log('Connected to the database');
+});
+
+
+
+
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 var itemRouter=require('./routes/item');
-//var videoRouter=require('./routes/item')
+//var videoRouter=require('./routes/item')  
+const ItemsModel=require('./schemas/items');
+
+
 var app = express();
 
 // view engine setup
@@ -19,6 +36,23 @@ app.set('view engine', 'ejs');
 
 // app.use(expressLayouts);
 // app.set('layout', 'dashboard');
+
+ItemsModel.find({})
+  .then(item => {
+    if (item && item.length > 0) {
+      console.log('Item found:');
+      item.forEach((item, index) => {
+        console.log(`Item ${index + 1}:`, item);
+      });
+    } else {
+      console.log('No item found.');
+    }
+  })
+  .catch(err => {
+    console.error('Error fetching item:', err);
+    // Handle the error appropriately (e.g., send an error response if it's an API)
+  });
+
 
 app.use(logger('dev'));
 app.use(express.json());
