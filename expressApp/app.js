@@ -7,7 +7,14 @@ var logger = require('morgan');
 // var expressLayouts = require('express-ejs-layouts');
 var mongoose=require('mongoose');
 // mongoose.connect('mongo+srv://leeinearth817:cnttvietnhatk17@mongodb.com/sample_weatherdata')
-mongoose.connect('mongodb+srv://leeinearth817:cnttvietnhatk17@cluster0.pjk9ees.mongodb.net/')
+var indexRouter = require('./routes/index');
+//var usersRouter = require('./routes/users');
+var itemRouter=require('./routes/item');
+//var videoRouter=require('./routes/item')  
+const ItemsModel=require('./schemas/items');
+
+
+var app = express();
 
 var db = mongoose.connection;
 db.on('error', function (error) {
@@ -19,16 +26,6 @@ db.once('open', function () {
 });
 
 
-
-
-var indexRouter = require('./routes/index');
-//var usersRouter = require('./routes/users');
-var itemRouter=require('./routes/item');
-//var videoRouter=require('./routes/item')  
-const ItemsModel=require('./schemas/items');
-
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
