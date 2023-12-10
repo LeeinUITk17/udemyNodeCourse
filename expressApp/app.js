@@ -7,6 +7,7 @@ var logger = require('morgan');
 // var expressLayouts = require('express-ejs-layouts');
 var mongoose=require('mongoose');
 // mongoose.connect('mongo+srv://leeinearth817:cnttvietnhatk17@mongodb.com/sample_weatherdata')
+mongoose.connect('mongodb+srv://leeinearth817:cnttvietnhatk17@cluster0.pjk9ees.mongodb.net/')
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 var itemRouter=require('./routes/item');
@@ -35,20 +36,21 @@ app.set('view engine', 'ejs');
 // app.set('layout', 'dashboard');
 
 ItemsModel.find({})
-  .then(item => {
-    if (item && item.length > 0) {
-      console.log('Item found:');
-      item.forEach((item, index) => {
+  .then(items => {
+    if (items && items.length > 0) {
+      console.log('Items found:');
+      items.forEach((item, index) => {
         console.log(`Item ${index + 1}:`, item);
       });
     } else {
-      console.log('No item found.');
+      console.log('No items found.');
     }
   })
   .catch(err => {
-    console.error('Error fetching item:', err);
+    console.error('Error fetching items:', err);
     // Handle the error appropriately (e.g., send an error response if it's an API)
   });
+
 
 
 app.use(logger('dev'));
