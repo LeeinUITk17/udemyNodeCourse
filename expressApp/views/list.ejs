@@ -108,6 +108,7 @@
                           </tr>
                         </thead>
                         <tbody>
+                          <% include ./helpers/status %>
                           <% items.forEach((items, index) => { %>
                           <tr>
                             <td>
@@ -121,11 +122,12 @@
                             </td>
                             <td>
                               <!-- <%= items.status %> -->
-                              <% if(items.status>=1) {%>
+                              <!-- <% if(items.status>=1) {%>
                               <a href="#"><span class="label label-success">active</span></a>
                               <% } else if(items.status==0) {%>
                               <a href="#"><span class="label label-warning">inactive</span></a>
-                              <%}%>
+                              <%}%> -->
+                              <% statusHelper(items.status,"#") %>
                             </td>
                             <td>
                               <%= items.ordering %>
