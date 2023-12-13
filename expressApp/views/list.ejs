@@ -39,17 +39,12 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="status-list col-sm-6 pl0">
-                      <a class="btn m-b-sm btn-success btn-sm" href="admin123/item/all">
-                      All ( <%= items.length %> )
-                      </a>
-                      <% const activeCount = items.filter(item => item.status >= 1).length; %>
-                     <a class="btn m-b-sm btn-default btn-sm" href="admin123/item/active">
-                    ACTIVE ( <%= activeCount %> )
-                       </a>
-                       <% const inactiveCount = items.filter(item => item.status ==0).length; %>
-                      <a class="btn m-b-sm btn-default btn-sm" href="admin123/item/inactive">
-                      INACTIVE ( <%= inactiveCount %> )
-                      </a>
+                      <% statusfilter.forEach((item) => { %>
+                        <% item.count = calculateItemCount(item.name, items) %>
+                        <a class="<%= item.class %>" href="<%= item.link %>">
+                          <%= item.name %> (<%= item.count %>)
+                        </a>
+                      <% }); %>                      
                     </div>
                     <div class="col-sm-6">
                       <form action="admin123/item/all" method="GET">
